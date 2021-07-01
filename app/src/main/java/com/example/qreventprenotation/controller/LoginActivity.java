@@ -35,9 +35,4 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view) {
         //query database
     }
-
-    /*public void openRegister(View view) {
-        Intent openRegister = new Intent(LoginActivity.this, RegisterActivity.class);
-        startActivity(openRegister);
-    }*/
 }

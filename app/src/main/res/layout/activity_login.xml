@@ -86,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="53dp"
         android:text="Registrati"
-        android:onClick="openRegister"
+        android:textColor="#03A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

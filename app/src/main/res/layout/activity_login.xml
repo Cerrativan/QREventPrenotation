@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" />
+        tools:layout_editor_absoluteY="392dp" />
 
     <Button
         android:id="@+id/btn_login"
@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="132dp"
         android:text="LOGIN"
+        android:onClick="login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -85,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="53dp"
         android:text="Registrati"
+        android:onClick="openRegister"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -2,6 +2,7 @@ package com.example.qreventprenotation.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -22,6 +23,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
-        //query nel database
+        //query database
+    }
+
+    public void openRegister(View view) {
+        Intent openRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+        startActivity(openRegister);
     }
 }

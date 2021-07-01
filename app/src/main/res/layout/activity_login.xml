@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="153dp"
-        android:layout_marginEnd="69dp"
+        android:layout_marginEnd="68dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,20 +32,11 @@
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="52dp"
         android:text="LOGIN"
-        app:layout_constraintEnd_toStartOf="@+id/btn_register_login"
-        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="login"
+        app:layout_constraintStart_toStartOf="@+id/lgn_password"
         app:layout_constraintTop_toBottomOf="@+id/lgn_password" />
 
-    <Button
-        android:id="@+id/btn_register_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="6dp"
-        android:text="REGISTER"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_login" />
 </androidx.constraintlayout.widget.ConstraintLayout>

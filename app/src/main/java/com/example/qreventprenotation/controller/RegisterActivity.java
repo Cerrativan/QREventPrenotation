@@ -1,5 +1,6 @@
 package com.example.qreventprenotation.controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -30,5 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void register(View view) {
         user = new User(usernameText.getText().toString(), passwordText.getText().toString(),emailText.getText().toString(), UUID.randomUUID());
+        //aggiungere utente nel database
     }
 }

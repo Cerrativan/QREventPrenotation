@@ -31,6 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void register(View view) {
         user = new User(usernameText.getText().toString(), passwordText.getText().toString(),emailText.getText().toString(), UUID.randomUUID());
-        //aggiungere utente nel database
+        //chiamata service per aggiungere nel database
     }
 }

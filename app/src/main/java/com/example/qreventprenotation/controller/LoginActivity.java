@@ -13,6 +13,7 @@ import com.example.qreventprenotation.R;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameLogin, passwordLogin;
+    private TextView registerText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +22,10 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameLogin = findViewById(R.id.lgn_username);
         passwordLogin = findViewById(R.id.lgn_password);
+        registerText = findViewById(R.id.textView4);
 
-        TextView txtvw = (TextView) findViewById(R.id.textView4);
-        txtvw.setOnClickListener(new View.OnClickListener() {
+
+        registerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent openRegister = new Intent(LoginActivity.this, RegisterActivity.class);

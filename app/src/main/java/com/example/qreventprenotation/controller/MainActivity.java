@@ -36,14 +36,16 @@ public class MainActivity extends AppCompatActivity {
         eventList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //chiamata activity eventi prenotati
+                openEventList = new Intent(MainActivity.this, EventListActivity.class);
+                startActivity(openEventList);
             }
         });
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //chiamata pagina profilo
+                openProfile = new Intent(MainActivity.this, ProfileViewActivity.class);
+                startActivity(openProfile);
             }
         });
     }

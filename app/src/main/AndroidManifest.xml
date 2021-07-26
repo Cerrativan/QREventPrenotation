@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QREventPrenotation">
-        <activity android:name=".controller.ChangePasswordActivity"></activity>
+        <activity android:name=".controller.ChangePasswordActivity" />
         <activity android:name=".controller.ProfileViewActivity" />
         <activity android:name=".controller.EventListActivity" />
         <activity android:name=".controller.EventPrenotationActivity" />

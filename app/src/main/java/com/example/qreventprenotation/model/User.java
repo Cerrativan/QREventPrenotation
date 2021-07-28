@@ -4,16 +4,16 @@ import java.util.UUID;
 
 public class User {
 
+    private int id;
     private String username;
     private String password;
     private String email;
-    private UUID id;
 
-    public User(String nickname, String password, String email, UUID id) {
+    public User(int id, String nickname, String password, String email) {
+        this.id = id;
         this.username = nickname;
         this.password = password;
         this.email = email;
-        this.id = id;
     }
 
     public String getUsername() {
@@ -40,11 +40,11 @@ public class User {
         this.email = email;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

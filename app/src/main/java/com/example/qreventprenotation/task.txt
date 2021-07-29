@@ -1,0 +1,5 @@
+-Cryptare password
+-Modificare UI a piacimento
+-Inserire attributo che fa scomparire il testo dei form quando cliccati
+-Aggiungere Login
+-Controllo setError in conferma password

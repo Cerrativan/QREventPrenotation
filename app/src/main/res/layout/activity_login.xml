@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="229dp"
         android:ems="10"
+        android:hint="password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
-        android:text="password"
+        android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -27,8 +28,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="305dp"
         android:ems="10"
+        android:focusableInTouchMode="true"
+        android:hint="username"
         android:inputType="textPersonName"
-        android:text="username"
+        android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -41,7 +44,7 @@
         android:layout_marginBottom="125dp"
         android:onClick="login"
         android:text="LOGIN"
-        app:iconTint="#673AB7"
+        app:iconTint="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -91,12 +94,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewUser1"
-        android:layout_width="210dp"
-        android:layout_height="30dp"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="426dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

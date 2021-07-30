@@ -17,6 +17,11 @@ import com.android.volley.toolbox.Volley;
 import com.example.qreventprenotation.R;
 
 import org.json.JSONObject;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.sql.SQLOutput;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -44,10 +49,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(validation()) {
             try {
+                String hash = BCrypt.hashpw(passwordText.getText().toString(), BCrypt.gensalt());
+
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("username", usernameText.getText().toString());
                 jsonObject.put("email", emailText.getText().toString());
-                jsonObject.put("password", passwordText.getText().toString());
+                jsonObject.put("password", hash);
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
                     @Override
@@ -70,10 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
     public boolean validation() {
         boolean bool = true;
 
-        if (usernameText.getText().toString().length() < 6 || usernameText.getText().toString().length() > 16 || usernameText.getText().toString().isEmpty()) {
-            usernameText.setError("L'username non soddisfa i requisiti");
-            bool = false;
-        } else if (passwordText.getText().toString().length() < 8 || passwordText.getText().toString().length() > 16 || passwordText.getText().toString().isEmpty()) {
+        if (passwordText.getText().toString().length() < 8 || passwordText.getText().toString().length() > 16 || passwordText.getText().toString().isEmpty()) {
             passwordText.setError("La password non soddisfa i requisiti");
             bool = false;
         } else if (!(passwordText2.getText().toString().equals(passwordText.getText().toString()))) {

@@ -51,38 +51,5 @@ public class LoginActivity extends AppCompatActivity {
         //BCrypt.checkpw(PWD_INSERITA_UTENTE, HASH_SALVATO_SU_DB
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://192.168.1.103:8080/api/users";
-
-        try {
-            String hash = BCrypt.hashpw(passwordLogin.getText().toString(), BCrypt.gensalt());
-
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("email", emailLogin.getText().toString());
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, jsonObject, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    String psw = null;
-                    try {
-                        psw = response.getString("password");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    if(BCrypt.checkpw(hash, psw)) {
-                        Toast.makeText(LoginActivity.this,"Login eseguito", Toast.LENGTH_SHORT).show();
-                        openMainActivity = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(openMainActivity);
-                    }else {
-                        passwordLogin.setError("Password errata");
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    emailLogin.setError("Utente non esistente");
-                }
-            });
-            queue.add(jsonObjectRequest);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

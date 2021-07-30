@@ -5,23 +5,33 @@ import java.util.UUID;
 public class User {
 
     private int id;
-    private String username;
+    private String nome;
+    private String cognome;
     private String password;
     private String email;
 
-    public User(int id, String nickname, String password, String email) {
+    public User(int id, String nome, String cognome, String password, String email) {
         this.id = id;
-        this.username = nickname;
+        this.nome = nome;
+        this.cognome = cognome;
         this.password = password;
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNome() {
+        return nome;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNome(String username) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
     public String getPassword() {

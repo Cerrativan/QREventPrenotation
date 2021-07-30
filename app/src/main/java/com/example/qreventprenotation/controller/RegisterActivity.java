@@ -2,7 +2,6 @@ package com.example.qreventprenotation.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,9 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.qreventprenotation.R;
-import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -32,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        usernameText = findViewById(R.id.username_text);
+        usernameText = findViewById(R.id.Cognome_text);
         passwordText = findViewById(R.id.password_text);
         passwordText2 = findViewById(R.id.password_text2);
         emailText = findViewById(R.id.email_text);

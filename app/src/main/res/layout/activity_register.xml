@@ -7,12 +7,27 @@
     tools:context=".controller.RegisterActivity">
 
     <EditText
-        android:id="@+id/username_text"
+        android:id="@+id/Cognome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="475dp"
+        android:layout_marginBottom="420dp"
         android:ems="10"
-        android:hint="username"
+        android:hint="Cognome"
+        android:inputType="textPersonName"
+        android:maxLength="16"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Nome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="480dp"
+        android:ems="10"
+        android:hint="Nome"
         android:inputType="textPersonName"
         android:maxLength="16"
         android:selectAllOnFocus="true"
@@ -25,7 +40,7 @@
         android:id="@+id/password_text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="230dp"
+        android:layout_marginBottom="200dp"
         android:ems="10"
         android:hint="conferma password"
         android:inputType="textPassword"
@@ -40,7 +55,7 @@
         android:id="@+id/email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="385dp"
+        android:layout_marginBottom="355dp"
         android:ems="10"
         android:hint="esempio@gmail.com"
         android:inputType="textEmailAddress"
@@ -56,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="584dp"
-        android:layout_marginBottom="99dp"
+        android:layout_marginBottom="110dp"
         android:onClick="register"
         android:text="REGISTRATI"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,22 +81,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewUSER"
-        android:layout_width="210dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="445dp"
-        android:text="Username da 6 a 16 caratteri"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Username da 6 a 16 caratteri" />
-
-    <TextView
         android:id="@+id/textViewPSW1"
         android:layout_width="210dp"
         android:layout_height="30dp"
-        android:layout_marginBottom="290dp"
+        android:layout_marginBottom="260dp"
         android:text="Password da 8 a 16 caratteri"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +95,7 @@
         android:id="@+id/password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="290dp"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"

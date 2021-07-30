@@ -35,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
         emailText = findViewById(R.id.email_text);
         txtuser = findViewById(R.id.textViewUSER);
         txtpsw = findViewById(R.id.textViewPSW1);
-        //txtpsw2 = findViewById(R.id.textViewPSW2);
     }
 
     public void register(View view) {

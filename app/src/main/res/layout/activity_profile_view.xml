@@ -110,34 +110,6 @@
         app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarProfile"
-        android:layout_width="412dp"
-        android:layout_height="57dp"
-        android:layout_marginBottom="630dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewToolbarProfile"
-        android:layout_width="220dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="645dp"
-        android:text="PROFILO"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textViewChangePsw"
         android:layout_width="210dp"

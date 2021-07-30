@@ -14,11 +14,16 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.QREventPrenotation">
-        <activity android:name=".controller.ChangePasswordActivity" />
-        <activity android:name=".controller.ProfileViewActivity" />
-        <activity android:name=".controller.EventListActivity" />
-        <activity android:name=".controller.EventPrenotationActivity" />
-        <activity android:name=".controller.MainActivity" />
+        <activity android:name=".controller.ChangePasswordActivity"
+                  android:label="Cambia Password"/>
+        <activity android:name=".controller.ProfileViewActivity"
+                  android:label="Profilo"/>
+        <activity android:name=".controller.EventListActivity"
+                  android:label="Bacheca Eventi"/>
+        <activity android:name=".controller.EventPrenotationActivity"
+                  android:label="Prenotazione Evento"/>
+        <activity android:name=".controller.MainActivity"
+                  android:label="Menu Principale"/>
         <activity android:name=".controller.LoginActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -26,7 +31,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".controller.RegisterActivity" />
+        <activity android:name=".controller.RegisterActivity"
+                  android:label="Registrazione"/>
     </application>
 
 </manifest>

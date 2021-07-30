@@ -19,26 +19,25 @@ import com.example.qreventprenotation.R;
 import org.json.JSONObject;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.sql.SQLOutput;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText usernameText, passwordText, emailText, passwordText2;
-    private TextView txtuser, txtpsw, txtpsw2;
+    private EditText nomeText, cognomeText, passwordText, emailText, passwordText2;
+    private TextView txtpsw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        usernameText = findViewById(R.id.Cognome_text);
+        nomeText = findViewById(R.id.nome_text);
+        cognomeText = findViewById(R.id.cognome_text);
         passwordText = findViewById(R.id.password_text);
         passwordText2 = findViewById(R.id.password_text2);
         emailText = findViewById(R.id.email_text);
-        txtuser = findViewById(R.id.textViewUSER);
         txtpsw = findViewById(R.id.textViewPSW1);
     }
 
@@ -52,7 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String hash = BCrypt.hashpw(passwordText.getText().toString(), BCrypt.gensalt());
 
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("username", usernameText.getText().toString());
+                jsonObject.put("nome", nomeText.getText().toString());
+                jsonObject.put("cognome", cognomeText.getText().toString());
                 jsonObject.put("email", emailText.getText().toString());
                 jsonObject.put("password", hash);
 
@@ -76,7 +76,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     public boolean validation() {
         boolean bool = true;
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(emailText.getText().toString());
 
+        if(!(matcher.matches())) {
+            emailText.setError("L'email inserita non è valida");
+            bool = false;
+        }
         if (passwordText.getText().toString().length() < 8 || passwordText.getText().toString().length() > 16 || passwordText.getText().toString().isEmpty()) {
             passwordText.setError("La password non soddisfa i requisiti");
             bool = false;

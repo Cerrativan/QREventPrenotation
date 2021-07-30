@@ -7,7 +7,7 @@
     tools:context=".controller.RegisterActivity">
 
     <EditText
-        android:id="@+id/Cognome_text"
+        android:id="@+id/cognome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="420dp"
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/Nome_text"
+        android:id="@+id/nome_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="480dp"

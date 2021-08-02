@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void register(View view) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.103:8080/api/users";
+        String url = "http://192.168.1.103:8080/api/postusers";
         emailText.setError(null);
 
         if(validation()) {

@@ -1,18 +1,22 @@
 package com.example.qreventprenotation.model;
 
-import java.util.UUID;
-
 public class Event {
+    private Long id;
     private String name;
-    private UUID id;
     private String location;
-    private String maxPrenotations;
+    private String maxPrenotation;
 
-    public Event(String name, UUID id, String location, String maxPrenotations) {
-        this.name = name;
+    public Event(Long id, String name, String location, String maxPrenotation) {
         this.id = id;
+        this.name = name;
         this.location = location;
-        this.maxPrenotations = maxPrenotations;
+        this.maxPrenotation = maxPrenotation;
+    }
+
+    public Event(String name, String location, String maxPrenotation) {
+        this.name = name;
+        this.location = location;
+        this.maxPrenotation = maxPrenotation;
     }
 
     public String getName() {
@@ -23,11 +27,11 @@ public class Event {
         this.name = name;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +43,11 @@ public class Event {
         this.location = location;
     }
 
-    public String getMaxPrenotations() {
-        return maxPrenotations;
+    public String getMaxPrenotation() {
+        return maxPrenotation;
     }
 
-    public void setMaxPrenotations(String maxPrenotations) {
-        this.maxPrenotations = maxPrenotations;
+    public void setMaxPrenotation(String maxPrenotation) {
+        this.maxPrenotation = maxPrenotation;
     }
 }

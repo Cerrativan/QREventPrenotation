@@ -1,24 +1,28 @@
 package com.example.qreventprenotation.controller;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.qreventprenotation.R;
 import com.google.zxing.Result;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class EventPrenotationActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class EventPrenotationActivity extends AppCompatActivity {
 
-    private ZXingScannerView scannerView;
     private RelativeLayout relativeLayout;
     private static final int REQUEST_CAMERA = 10;
 
@@ -29,10 +33,11 @@ public class EventPrenotationActivity extends AppCompatActivity implements ZXing
         relativeLayout = findViewById(R.id.layout_event_prenotation);
 
         int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-        scannerView = new ZXingScannerView(this);
-        setContentView(R.layout.activity_event_prenotation);
         if(permission == PackageManager.PERMISSION_GRANTED) {
-            relativeLayout.addView(scannerView);
+            IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+            intentIntegrator.setPrompt("Scan QR Code");
+            intentIntegrator.setOrientationLocked(true);
+            intentIntegrator.initiateScan();
         }else {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
@@ -47,27 +52,25 @@ public class EventPrenotationActivity extends AppCompatActivity implements ZXing
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == REQUEST_CAMERA) {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                relativeLayout.addView(scannerView);
+                IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+                intentIntegrator.setPrompt("Scan QR Code");
+                intentIntegrator.setOrientationLocked(true);
+                intentIntegrator.initiateScan();
             }
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        scannerView.setResultHandler(this);
-        scannerView.startCamera();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        scannerView.stopCamera();
-    }
-
-    @Override
-    public void handleResult(Result rawResult) {
-        String text = rawResult.getText();
-        //contattare il DB
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(intentResult != null) {
+            if(intentResult.getContents() == null) {
+                Toast.makeText(getBaseContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+            }else {
+                //event prenotation method
+            }
+        }else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

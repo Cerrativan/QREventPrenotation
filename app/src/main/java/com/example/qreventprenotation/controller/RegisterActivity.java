@@ -74,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public boolean validation() {
+    protected boolean validation() {
         boolean bool = true;
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);

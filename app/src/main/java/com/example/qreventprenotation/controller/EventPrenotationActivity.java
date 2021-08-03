@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.qreventprenotation.R;
 import com.google.zxing.Result;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -30,13 +32,14 @@ public class EventPrenotationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         relativeLayout = findViewById(R.id.layout_event_prenotation);
 
         int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if(permission == PackageManager.PERMISSION_GRANTED) {
             IntentIntegrator intentIntegrator = new IntentIntegrator(this);
             intentIntegrator.setPrompt("Scan QR Code");
-            intentIntegrator.setOrientationLocked(true);
+            intentIntegrator.setOrientationLocked(false);
             intentIntegrator.initiateScan();
         }else {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -67,10 +70,17 @@ public class EventPrenotationActivity extends AppCompatActivity {
             if(intentResult.getContents() == null) {
                 Toast.makeText(getBaseContext(), "Cancelled", Toast.LENGTH_SHORT).show();
             }else {
-                //event prenotation method
+                Toast.makeText(getBaseContext(), "Scanned : " + intentResult.getContents(), Toast.LENGTH_LONG).show();
             }
         }else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    public void eventPrenotation(String result) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://192.168.1.103:8080/api/getprenotations";
+
+
     }
 }

@@ -14,7 +14,6 @@ import com.example.qreventprenotation.R;
 public class MainActivity extends AppCompatActivity {
 
     Button eventPrenotation, eventList, profile;
-    Intent openEventPrenotation, openEventList, openProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         eventPrenotation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openEventPrenotation = new Intent(MainActivity.this, EventPrenotationActivity.class);
+                Intent openEventPrenotation = new Intent(getApplicationContext(), EventPrenotationActivity.class);
                 startActivity(openEventPrenotation);
             }
         });
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         eventList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openEventList = new Intent(MainActivity.this, EventListActivity.class);
+                Intent openEventList = new Intent(getApplicationContext(), EventListActivity.class);
                 startActivity(openEventList);
             }
         });
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openProfile = new Intent(MainActivity.this, ProfileViewActivity.class);
+                Intent openProfile = new Intent(getApplicationContext(), ProfileViewActivity.class);
                 startActivity(openProfile);
             }
         });

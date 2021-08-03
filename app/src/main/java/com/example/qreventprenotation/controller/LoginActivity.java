@@ -3,6 +3,7 @@ package com.example.qreventprenotation.controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -61,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         if(response.getString("result").equals("true")) {
+                            saveSharedPreferences();
                             openMainActivity = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(openMainActivity);
                         }else {
@@ -80,5 +82,15 @@ public class LoginActivity extends AppCompatActivity {
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("email", emailLogin.getText().toString());
+        editor.putString("password", emailLogin.getText().toString());
+
+        editor.commit();
     }
 }

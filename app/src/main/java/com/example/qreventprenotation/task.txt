@@ -2,4 +2,8 @@
 -Modificare UI a piacimento
 -Controllo setError in conferma password
 -Modificare EditText con TextView nella profile view
--Controllare shared preferences
+-Modificare fotocamera con link manu(QR code pure?)
+-Aggiungere dati profilo
+-Aggiungere login automatico
+-Criptare dati da salvare nelle shared preferences
+-Gestire prenotazione evento

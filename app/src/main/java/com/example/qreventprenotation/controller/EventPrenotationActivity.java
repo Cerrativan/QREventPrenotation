@@ -1,46 +1,54 @@
 package com.example.qreventprenotation.controller;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.widget.RelativeLayout;
+import android.util.Size;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.qreventprenotation.R;
-import com.google.zxing.Result;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+import com.example.qreventprenotation.qr.QRCodeFoundListener;
+import com.example.qreventprenotation.qr.QRCodeImageAnalyzer;
+import com.google.common.util.concurrent.ListenableFuture;
 
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import org.json.JSONObject;
+import java.util.concurrent.ExecutionException;
 
 public class EventPrenotationActivity extends AppCompatActivity {
 
-    private RelativeLayout relativeLayout;
     private static final int REQUEST_CAMERA = 10;
+    private PreviewView previewView;
+    private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_event_prenotation);
 
+        previewView = findViewById(R.id.activity_prenotation_previewView);
 
-        relativeLayout = findViewById(R.id.layout_event_prenotation);
+        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
 
         int permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if(permission == PackageManager.PERMISSION_GRANTED) {
-            IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-            intentIntegrator.setPrompt("Scan QR Code");
-            intentIntegrator.setOrientationLocked(false);
-            intentIntegrator.initiateScan();
+            startCamera();
         }else {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this,
@@ -55,32 +63,78 @@ public class EventPrenotationActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == REQUEST_CAMERA) {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-                intentIntegrator.setPrompt("Scan QR Code");
-                intentIntegrator.setOrientationLocked(true);
-                intentIntegrator.initiateScan();
+                startCamera();
+            }else {
+                Toast.makeText(this, "Permessi rifiutati", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(intentResult != null) {
-            if(intentResult.getContents() == null) {
-                Toast.makeText(getBaseContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-            }else {
-                Toast.makeText(getBaseContext(), "Scanned : " + intentResult.getContents(), Toast.LENGTH_LONG).show();
+    private void startCamera() {
+        cameraProviderFuture.addListener(() -> {
+            try {
+                ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
+                Preview preview = new Preview.Builder().build();
+                preview.setSurfaceProvider(previewView.getSurfaceProvider());
+
+                CameraSelector cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA;
+
+                ImageAnalysis imageAnalysis =
+                        new ImageAnalysis.Builder()
+                                .setTargetResolution(new Size(1280, 720))
+                                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                                .build();
+
+                imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), new QRCodeImageAnalyzer(new QRCodeFoundListener() {
+                    @Override
+                    public void onQRCodeFound(String qrCode) {
+                        Toast.makeText(EventPrenotationActivity.this, "Posto prenotato", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), EventListActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void qrCodeNotFound() {
+                    }
+                }));
+
+                cameraProvider.unbindAll();
+
+                cameraProvider.bindToLifecycle(this, cameraSelector, imageAnalysis, preview);
+            } catch (ExecutionException | InterruptedException e) {
+                Toast.makeText(this, "Error starting camera " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
+        }, ContextCompat.getMainExecutor(this));
     }
 
     public void eventPrenotation(String result) {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.103:8080/api/getprenotations";
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
+        String id = sharedPreferences.getString("id", "");
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://192.168.1.103:8080/api/postprenotations";
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("eventId", result.toString());
+            jsonObject.put("userId", id);
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+            queue.add(jsonObjectRequest);
+            }catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

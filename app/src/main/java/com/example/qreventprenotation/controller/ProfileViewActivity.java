@@ -15,7 +15,7 @@ public class ProfileViewActivity extends AppCompatActivity {
 
     TextView pswChange;
     Intent openPsWChange;
-    EditText username_Profile;
+    EditText username_Profile, nomeProfile, cognomeProfile, idProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,9 @@ public class ProfileViewActivity extends AppCompatActivity {
 
         pswChange = findViewById(R.id.textViewChangePsw);
         username_Profile = findViewById(R.id.usernameProfile);
+        nomeProfile = findViewById(R.id.emailProfile2);
+        cognomeProfile = findViewById(R.id.emailProfile);
+        idProfile = findViewById(R.id.usernameProfile2);
 
         getUserData();
 
@@ -38,10 +41,16 @@ public class ProfileViewActivity extends AppCompatActivity {
 
     public void getUserData() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
+
         String email = sharedPreferences.getString("email", "");
-        String password = sharedPreferences.getString("password", "");
+        String id = sharedPreferences.getString("id", "");
+        String nome = sharedPreferences.getString("nome", "");
+        String cognome = sharedPreferences.getString("cognome", "");
 
         username_Profile.setText(email);
+        nomeProfile.setText(nome);
+        cognomeProfile.setText(cognome);
+        idProfile.setText(id);
 
     }
 }

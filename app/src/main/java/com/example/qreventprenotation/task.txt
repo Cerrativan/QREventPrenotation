@@ -2,8 +2,7 @@
 -Modificare UI a piacimento
 -Controllo setError in conferma password
 -Modificare EditText con TextView nella profile view
--Modificare fotocamera con link manu(QR code pure?)
--Aggiungere dati profilo
--Aggiungere login automatico
+-Aggiungere "Rimani connesso" nel login
+-Aggiungere funzionalità "Disconnetti"
 -Criptare dati da salvare nelle shared preferences
 -Gestire prenotazione evento

@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         if(response.getString("result").equals("true")) {
-                            saveSharedPreferences();
+                            saveSharedPreferences(response);
                             openMainActivity = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(openMainActivity);
                         }else {
@@ -84,12 +84,19 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void saveSharedPreferences() {
+    public void saveSharedPreferences(JSONObject response) {
         SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("email", emailLogin.getText().toString());
-        editor.putString("password", emailLogin.getText().toString());
+        try {
+            editor.putString("email", emailLogin.getText().toString());
+            editor.putString("password", passwordLogin.getText().toString());
+            editor.putString("nome", response.getString("nome"));
+            editor.putString("cognome", response.getString("cognome"));
+            editor.putString("id", response.getString("id"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         editor.commit();
     }

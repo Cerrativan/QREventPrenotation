@@ -2,7 +2,6 @@
 -Modificare UI a piacimento
 -Controllo setError in conferma password
 -Modificare EditText con TextView nella profile view
--Aggiungere "Rimani connesso" nel login
--Aggiungere funzionalità "Disconnetti"
--Criptare dati da salvare nelle shared preferences
--Gestire prenotazione evento
+-Aggiungere "Rimani connesso" nel login(?)
+-Risolvere errore qr code scansionato
+-Risolvere problema back

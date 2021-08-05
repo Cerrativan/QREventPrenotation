@@ -2,8 +2,11 @@ package com.example.qreventprenotation.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,7 +16,7 @@ import com.example.qreventprenotation.R;
 
 public class ProfileViewActivity extends AppCompatActivity {
 
-    TextView pswChange;
+    TextView pswChange, disconnect;
     Intent openPsWChange;
     EditText username_Profile, nomeProfile, cognomeProfile, idProfile;
 
@@ -37,6 +40,13 @@ public class ProfileViewActivity extends AppCompatActivity {
                 startActivity(openPsWChange);
             }
         });
+
+        /*disconnect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeUserData();
+            }
+        });*/
     }
 
     public void getUserData() {
@@ -52,5 +62,11 @@ public class ProfileViewActivity extends AppCompatActivity {
         cognomeProfile.setText(cognome);
         idProfile.setText(id);
 
+    }
+
+    public void removeUserData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
+
+        sharedPreferences.edit().clear().commit();
     }
 }

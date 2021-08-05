@@ -2,6 +2,7 @@ package com.example.qreventprenotation.controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
@@ -88,9 +89,8 @@ public class EventPrenotationActivity extends AppCompatActivity {
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), new QRCodeImageAnalyzer(new QRCodeFoundListener() {
                     @Override
                     public void onQRCodeFound(String qrCode) {
-                        Toast.makeText(EventPrenotationActivity.this, "Posto prenotato", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), EventListActivity.class);
-                        startActivity(intent);
+                        eventPrenotation(qrCode);
+
                     }
 
                     @Override
@@ -123,12 +123,22 @@ public class EventPrenotationActivity extends AppCompatActivity {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
-
+                    try {
+                        if(response.getString("result").equals("true")) {
+                            Toast.makeText(EventPrenotationActivity.this, "Posto prenotato", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), EventListActivity.class);
+                            startActivity(intent);
+                        }else {
+                            Toast.makeText(EventPrenotationActivity.this, "Evento pieno", Toast.LENGTH_SHORT).show();
+                        }
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Toast.makeText(EventPrenotationActivity.this, "Prenotazione già effettuata", Toast.LENGTH_SHORT).show();
                 }
             });
             queue.add(jsonObjectRequest);

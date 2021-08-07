@@ -6,53 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".controller.ProfileViewActivity">
 
-    <EditText
-        android:id="@+id/usernameProfile2"
+    <TextView
+        android:id="@+id/nomeView3"
         android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="185dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
+        android:layout_height="45dp"
+        android:layout_marginBottom="284dp"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/emailProfile"
+    <TextView
+        android:id="@+id/nomeView4"
         android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="385dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
-        android:textStyle="italic"
+        android:layout_height="45dp"
+        android:layout_marginBottom="184dp"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/emailProfile2"
+    <TextView
+        android:id="@+id/nomeView2"
         android:layout_width="220dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginBottom="485dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:selectAllOnFocus="true"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/usernameProfile"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="285dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -118,6 +99,29 @@
         android:text="Cambia password"
         android:textAlignment="center"
         android:textColor="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:text="Disconnetti"
+        android:textColor="#F44336"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/nomeView"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="384dp"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

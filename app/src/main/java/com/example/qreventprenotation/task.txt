@@ -4,4 +4,6 @@
 -Modificare EditText con TextView nella profile view
 -Aggiungere "Rimani connesso" nel login(?)
 -Risolvere errore qr code scansionato
--Risolvere problema back
+-Tabella event list
+-Problema tipo di lista per event list
+-Rimuovere(?) data e ora prenotazioni

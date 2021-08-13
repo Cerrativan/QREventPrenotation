@@ -1,49 +1,50 @@
 package com.example.qreventprenotation.model;
 
 public class Prenotation {
-    private Long id;
-    private Long eventId;
-    private int userId;
+    private Long prenotationid;
+    private Event eventid;
+    private User userid;
     private Long prenotation;
     private boolean occupied;
 
-    public Prenotation(Long id, Long eventId, int userId, Long prenotation, boolean occupied) {
-        this.id = id;
-        this.eventId = eventId;
-        this.userId = userId;
+
+    public Prenotation(Long prenotationid, Event eventid, User userid, Long prenotation, boolean occupied) {
+        this.prenotationid = prenotationid;
+        this.eventid = eventid;
+        this.userid = userid;
         this.prenotation = prenotation;
         this.occupied = occupied;
     }
 
-    public Prenotation(Long eventId, int userId, Long prenotation, boolean occupied) {
-        this.eventId = eventId;
-        this.userId = userId;
+    public Prenotation(Event eventid, User userid, Long prenotation, boolean occupied) {
+        this.eventid = eventid;
+        this.userid = userid;
         this.prenotation = prenotation;
         this.occupied = occupied;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPrenotationid() {
+        return prenotationid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPrenotationid(Long prenotationid) {
+        this.prenotationid = prenotationid;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public Event getEventid() {
+        return eventid;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setEventid(Event eventid) {
+        this.eventid = eventid;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUserid() {
+        return userid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserid(User userid) {
+        this.userid = userid;
     }
 
     public Long getPrenotation() {

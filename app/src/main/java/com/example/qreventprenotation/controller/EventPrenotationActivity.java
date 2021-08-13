@@ -2,7 +2,6 @@ package com.example.qreventprenotation.controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.camera.core.Camera;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.Preview;
@@ -30,6 +29,7 @@ import com.example.qreventprenotation.qr.QRCodeImageAnalyzer;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
 
 public class EventPrenotationActivity extends AppCompatActivity {
@@ -83,14 +83,20 @@ public class EventPrenotationActivity extends AppCompatActivity {
                 ImageAnalysis imageAnalysis =
                         new ImageAnalysis.Builder()
                                 .setTargetResolution(new Size(1280, 720))
-                                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                                .setBackpressureStrategy(ImageAnalysis.STRATEGY_BLOCK_PRODUCER)
+                                .setImageQueueDepth(1)
                                 .build();
 
                 imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), new QRCodeImageAnalyzer(new QRCodeFoundListener() {
                     @Override
                     public void onQRCodeFound(String qrCode) {
-                        eventPrenotation(qrCode);
-
+                        /*Long now =  System.currentTimeMillis();
+                        if(now - lastImageCapturedTime < 5000) {
+                            Log.i("Log: ", "lettura qr code ignorata");
+                        }else {
+                            lastImageCapturedTime = now;*/
+                            eventPrenotation(qrCode);
+                        //}
                     }
 
                     @Override
@@ -113,12 +119,12 @@ public class EventPrenotationActivity extends AppCompatActivity {
         String id = sharedPreferences.getString("id", "");
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.103:8080/api/postprenotations";
+        String url = "http://192.168.1.128:8080/api/postprenotations";
 
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("eventId", result.toString());
-            jsonObject.put("userId", id);
+            jsonObject.put("eventid", result);
+            jsonObject.put("userid", id);
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
@@ -126,7 +132,7 @@ public class EventPrenotationActivity extends AppCompatActivity {
                     try {
                         if(response.getString("result").equals("true")) {
                             Toast.makeText(EventPrenotationActivity.this, "Posto prenotato", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), EventListActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), PrenotationListActivity.class);
                             startActivity(intent);
                         }else {
                             Toast.makeText(EventPrenotationActivity.this, "Evento pieno", Toast.LENGTH_SHORT).show();

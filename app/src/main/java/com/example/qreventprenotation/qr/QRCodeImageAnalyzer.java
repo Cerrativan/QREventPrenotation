@@ -1,5 +1,7 @@
 package com.example.qreventprenotation.qr;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageProxy;
@@ -21,6 +23,7 @@ import static android.graphics.ImageFormat.YUV_444_888;
 
 public class QRCodeImageAnalyzer implements ImageAnalysis.Analyzer {
     private QRCodeFoundListener listener;
+    private Long lastImageCapturedTime = 0L;
 
     public QRCodeImageAnalyzer(QRCodeFoundListener listener) {
         this.listener = listener;
@@ -28,29 +31,35 @@ public class QRCodeImageAnalyzer implements ImageAnalysis.Analyzer {
 
     @Override
     public void analyze(@NonNull ImageProxy image) {
-        if (image.getFormat() == YUV_420_888 || image.getFormat() == YUV_422_888 || image.getFormat() == YUV_444_888) {
-            ByteBuffer byteBuffer = image.getPlanes()[0].getBuffer();
-            byte[] imageData = new byte[byteBuffer.capacity()];
-            byteBuffer.get(imageData);
 
-            PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
-                    imageData,
-                    image.getWidth(), image.getHeight(),
-                    0, 0,
-                    image.getWidth(), image.getHeight(),
-                    false
-            );
+        Long now =  System.currentTimeMillis();
+        if(now - lastImageCapturedTime < 5000) {
+            Log.i("Log: ", "lettura qr code ignorata");
+        }else {
+            lastImageCapturedTime = now;
+            if (image.getFormat() == YUV_420_888 || image.getFormat() == YUV_422_888 || image.getFormat() == YUV_444_888) {
+                ByteBuffer byteBuffer = image.getPlanes()[0].getBuffer();
+                byte[] imageData = new byte[byteBuffer.capacity()];
+                byteBuffer.get(imageData);
 
-            BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+                PlanarYUVLuminanceSource source = new PlanarYUVLuminanceSource(
+                        imageData,
+                        image.getWidth(), image.getHeight(),
+                        0, 0,
+                        image.getWidth(), image.getHeight(),
+                        false
+                );
 
-            try {
-                Result result = new QRCodeMultiReader().decode(binaryBitmap);
-                listener.onQRCodeFound(result.getText());
-            } catch (FormatException | ChecksumException | NotFoundException e) {
-                listener.qrCodeNotFound();
+                BinaryBitmap binaryBitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+                try {
+                    Result result = new QRCodeMultiReader().decode(binaryBitmap);
+                    listener.onQRCodeFound(result.getText());
+                } catch (FormatException | ChecksumException | NotFoundException e) {
+                    listener.qrCodeNotFound();
+                }
             }
         }
-
         image.close();
     }
 }

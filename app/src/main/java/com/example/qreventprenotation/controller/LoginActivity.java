@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View view) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.103:8080/api/getusers";
+        String url = "http://192.168.1.128:8080/api/getusers";
 
         try {
             JSONObject jsonObject = new JSONObject();
@@ -93,11 +93,15 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("password", passwordLogin.getText().toString());
             editor.putString("nome", response.getString("nome"));
             editor.putString("cognome", response.getString("cognome"));
-            editor.putString("id", response.getString("id"));
+            editor.putString("id", response.getString("userid"));
         }catch (Exception e){
             e.printStackTrace();
         }
 
         editor.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

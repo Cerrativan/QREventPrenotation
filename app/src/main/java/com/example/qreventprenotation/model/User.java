@@ -1,28 +1,34 @@
 package com.example.qreventprenotation.model;
 
-import java.util.UUID;
-
 public class User {
 
-    private int id;
+    private int userid;
     private String nome;
     private String cognome;
     private String password;
     private String email;
 
-    public User(int id, String nome, String cognome, String password, String email) {
-        this.id = id;
+    public User(int userid, String nome, String cognome, String password, String email) {
+        this.userid = userid;
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
         this.email = email;
     }
 
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String username) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -49,13 +55,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 }

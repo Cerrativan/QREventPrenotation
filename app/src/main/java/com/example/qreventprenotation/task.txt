@@ -1,9 +1,11 @@
-
--Modificare UI a piacimento
--Controllo setError in conferma password
--Modificare EditText con TextView nella profile view
--Aggiungere "Rimani connesso" nel login(?)
--Risolvere errore qr code scansionato
+DA AGGIUNGERE:
+-"Ricordami" nel login
 -Tabella event list
--Problema tipo di lista per event list
--Rimuovere(?) data e ora prenotazioni
+-Eliminare prenotazione
+
+DA MODIFICARE:
+-UI a piacimento
+-Dove rimuovere il back button
+
+DA RISOLVERE:
+-setError in conferma password

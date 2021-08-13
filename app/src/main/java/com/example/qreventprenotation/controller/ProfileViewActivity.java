@@ -16,9 +16,8 @@ import com.example.qreventprenotation.R;
 
 public class ProfileViewActivity extends AppCompatActivity {
 
-    TextView pswChange, disconnect;
+    TextView pswChange, disconnectTextView, nomeTextView, cognomeTextView, idTextView, emailTextView;
     Intent openPsWChange;
-    EditText username_Profile, nomeProfile, cognomeProfile, idProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +25,11 @@ public class ProfileViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_view);
 
         pswChange = findViewById(R.id.textViewChangePsw);
-        username_Profile = findViewById(R.id.usernameProfile);
-        nomeProfile = findViewById(R.id.emailProfile2);
-        cognomeProfile = findViewById(R.id.emailProfile);
-        idProfile = findViewById(R.id.usernameProfile2);
+        nomeTextView = findViewById(R.id.nomeView);
+        cognomeTextView = findViewById(R.id.cognomeView);
+        emailTextView = findViewById(R.id.emailView);
+        idTextView = findViewById(R.id.idView);
+        disconnectTextView = findViewById(R.id.disconnectText);
 
         getUserData();
 
@@ -41,12 +41,14 @@ public class ProfileViewActivity extends AppCompatActivity {
             }
         });
 
-        /*disconnect.setOnClickListener(new View.OnClickListener() {
+        disconnectTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 removeUserData();
+                Intent intent = new Intent(ProfileViewActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
-        });*/
+        });
     }
 
     public void getUserData() {
@@ -57,10 +59,10 @@ public class ProfileViewActivity extends AppCompatActivity {
         String nome = sharedPreferences.getString("nome", "");
         String cognome = sharedPreferences.getString("cognome", "");
 
-        username_Profile.setText(email);
-        nomeProfile.setText(nome);
-        cognomeProfile.setText(cognome);
-        idProfile.setText(id);
+        emailTextView.setText(email);
+        nomeTextView.setText(nome);
+        cognomeTextView.setText(cognome);
+        idTextView.setText(id);
 
     }
 

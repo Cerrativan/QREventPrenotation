@@ -43,6 +43,8 @@ dependencies {
     implementation 'com.google.zxing:core:3.3.3'
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     implementation"com.android.volley:volley:1.2.0"
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
     implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '5.2.2.RELEASE'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

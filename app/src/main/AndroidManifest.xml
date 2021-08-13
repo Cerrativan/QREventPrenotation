@@ -19,7 +19,7 @@
                   android:label="Cambia Password"/>
         <activity android:name=".controller.ProfileViewActivity"
                   android:label="Profilo"/>
-        <activity android:name=".controller.EventListActivity"
+        <activity android:name=".controller.PrenotationListActivity"
                   android:label="Bacheca Eventi"/>
         <activity android:name=".controller.EventPrenotationActivity"
                   android:label="Prenotazione Evento"/>

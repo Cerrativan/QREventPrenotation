@@ -1,38 +1,44 @@
 package com.example.qreventprenotation.model;
 
 public class Event {
-    private Long id;
-    private String name;
+    private Long eventid;
+    private String nome;
     private String location;
-    private String maxPrenotation;
+    private String maxprenotation;
+    private String date;
+    private String hour;
 
-    public Event(Long id, String name, String location, String maxPrenotation) {
-        this.id = id;
-        this.name = name;
+    public Event(Long eventid, String nome, String location, String maxprenotation, String date, String hour) {
+        this.eventid = eventid;
+        this.nome = nome;
         this.location = location;
-        this.maxPrenotation = maxPrenotation;
+        this.maxprenotation = maxprenotation;
+        this.date = date;
+        this.hour = hour;
     }
 
-    public Event(String name, String location, String maxPrenotation) {
-        this.name = name;
+    public Event(String nome, String location, String maxprenotation, String date, String hour) {
+        this.nome = nome;
         this.location = location;
-        this.maxPrenotation = maxPrenotation;
+        this.maxprenotation = maxprenotation;
+        this.date = date;
+        this.hour = hour;
     }
 
-    public String getName() {
-        return name;
+    public Long getEventid() {
+        return eventid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEventid(Long eventid) {
+        this.eventid = eventid;
     }
 
-    public Long getId() {
-        return id;
+    public String getNome() {
+        return nome;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getLocation() {
@@ -43,11 +49,27 @@ public class Event {
         this.location = location;
     }
 
-    public String getMaxPrenotation() {
-        return maxPrenotation;
+    public String getMaxprenotation() {
+        return maxprenotation;
     }
 
-    public void setMaxPrenotation(String maxPrenotation) {
-        this.maxPrenotation = maxPrenotation;
+    public void setMaxprenotation(String maxprenotation) {
+        this.maxprenotation = maxprenotation;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 }

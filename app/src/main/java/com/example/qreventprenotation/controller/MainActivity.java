@@ -1,8 +1,6 @@
 package com.example.qreventprenotation.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         eventList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openEventList = new Intent(getApplicationContext(), EventListActivity.class);
+                Intent openEventList = new Intent(getApplicationContext(), PrenotationListActivity.class);
                 startActivity(openEventList);
             }
         });

@@ -8,13 +8,14 @@
     android:orientation="vertical"
     tools:context=".controller.PrenotationListActivity">
 
-        <TextView
-            android:id="@+id/popup_nome"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="Nome Evento"
-            />
+    <TextView
+        android:id="@+id/popup_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:text="Nome Evento"
+        android:textAlignment="center"
+        android:textStyle="bold" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -31,25 +32,36 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="ID"/>
+                android:text="ID"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Data"
-                android:gravity="center"/>
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Ora"
-                android:gravity="center"/>
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Posto"
-                android:gravity="center"/>
+                android:textAlignment="center"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,25 +75,29 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:background="@drawable/border"/>
             <TextView
                 android:id="@+id/popup_data"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:background="@drawable/border"/>
             <TextView
                 android:id="@+id/popup_ora"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:background="@drawable/border"/>
             <TextView
                 android:id="@+id/popup_posto"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:background="@drawable/border"/>
         </LinearLayout>
 
         <Button

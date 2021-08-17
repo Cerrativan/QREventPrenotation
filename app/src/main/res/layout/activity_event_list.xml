@@ -17,25 +17,25 @@
         <TextView
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:text="Nome Evento"
             android:background="@drawable/border"
-            ></TextView>
+            android:text="Nome Evento"
+            android:textAlignment="center"
+            android:textStyle="bold"></TextView>
 
         <TextView
-            android:layout_width="111dp"
+            android:layout_width="112dp"
             android:layout_height="match_parent"
             android:background="@drawable/border"
             android:text="Posto"
-            android:textAlignment="center"></TextView>
+            android:textAlignment="center"
+            android:textStyle="bold"></TextView>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:orientation="vertical"
-        android:background="@drawable/border">
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_prenotazioni"

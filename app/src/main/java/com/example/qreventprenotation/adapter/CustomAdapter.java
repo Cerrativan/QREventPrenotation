@@ -1,16 +1,20 @@
 package com.example.qreventprenotation.adapter;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.qreventprenotation.R;
-import com.example.qreventprenotation.controller.AdapterActivity;
+import com.example.qreventprenotation.fragment.PopupFragment;
 import com.example.qreventprenotation.model.Prenotation;
 
 import java.util.List;
@@ -57,8 +61,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holderCasted.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openPopup = new Intent(activity.getApplicationContext(), AdapterActivity.class);
-                activity.startActivity(openPopup);
+                DialogFragment dialogFragment = new PopupFragment();
+                dialogFragment.show(((FragmentActivity)activity).getSupportFragmentManager(), "Popup");
             }
         });
     }
@@ -67,5 +71,4 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public int getItemCount() {
         return list.size();
     }
-
 }

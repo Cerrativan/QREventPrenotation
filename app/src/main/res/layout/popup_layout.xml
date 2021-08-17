@@ -8,20 +8,13 @@
     android:orientation="vertical"
     tools:context=".controller.PrenotationListActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content">
-
         <TextView
             android:id="@+id/popup_nome"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:text="Nome Evento"
-            android:background="@drawable/border"
-            ></TextView>
-    </LinearLayout>
+            />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -38,25 +31,25 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="ID"></TextView>
+                android:text="ID"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Data"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Ora"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Posto"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
         </LinearLayout>
 
         <LinearLayout
@@ -70,25 +63,25 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
             <TextView
                 android:id="@+id/popup_data"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
             <TextView
                 android:id="@+id/popup_ora"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
             <TextView
                 android:id="@+id/popup_posto"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"></TextView>
+                android:gravity="center"/>
         </LinearLayout>
 
         <Button
@@ -97,15 +90,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:text="ELIMINA"></Button>
+            android:text="ELIMINA"/>
 
-        <TextView
-            android:id="@+id/text_chiudi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:textColor="@android:color/darker_gray"
-            android:text="Chiudi"></TextView>
     </LinearLayout>
 </LinearLayout>

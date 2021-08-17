@@ -16,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QREventPrenotation"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controller.AdapterActivity"></activity>
         <activity
             android:name=".controller.ChangePasswordActivity"
             android:label="Cambia Password" />
@@ -25,7 +24,7 @@
             android:label="Profilo" />
         <activity
             android:name=".controller.PrenotationListActivity"
-            android:label="Bacheca Eventi" />
+            android:label="Bacheca Prenotazioni" />
         <activity
             android:name=".controller.EventPrenotationActivity"
             android:label="Prenotazione Evento" />

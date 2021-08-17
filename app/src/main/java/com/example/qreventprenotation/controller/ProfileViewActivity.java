@@ -61,7 +61,6 @@ public class ProfileViewActivity extends AppCompatActivity {
         String cognome = sharedPreferences.getString("cognome", "");
 
         emailTextView.setText(email);
-        emailTextView.setPaintFlags(emailTextView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         nomeTextView.setText(nome);
         cognomeTextView.setText(cognome);
         idTextView.setText(id);

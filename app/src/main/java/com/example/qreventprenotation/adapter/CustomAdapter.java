@@ -1,6 +1,8 @@
 package com.example.qreventprenotation.adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +63,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holderCasted.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putString("id", list.get(position).getPrenotationid().toString());
+                args.putString("data", list.get(position).getEventid().getDate());
+                args.putString("ora", list.get(position).getEventid().getHour());
+                args.putString("posto", list.get(position).getPrenotation().toString());
+                args.putString("nome", list.get(position).getEventid().getNome());
                 DialogFragment dialogFragment = new PopupFragment();
+                dialogFragment.setArguments(args);
                 dialogFragment.show(((FragmentActivity)activity).getSupportFragmentManager(), "Popup");
             }
         });

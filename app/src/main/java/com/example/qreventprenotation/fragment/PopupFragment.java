@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.qreventprenotation.R;
+import com.example.qreventprenotation.model.Prenotation;
 
 
 public class PopupFragment extends DialogFragment {
@@ -28,9 +29,15 @@ public class PopupFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.popup_layout, null);
         bindData(view);
+        txt_nome.setText(getArguments().getString("nome"));
+        txt_id.setText(getArguments().getString("id"));
+        txt_data.setText(getArguments().getString("data"));
+        txt_ora.setText(getArguments().getString("ora"));
+        txt_posto.setText(getArguments().getString("posto"));
         builder.setView(view).
                 setNegativeButton(R.string.Chiudi, new DialogInterface.OnClickListener() {
                     @Override
@@ -56,4 +63,5 @@ public class PopupFragment extends DialogFragment {
         txt_ora = view.findViewById(R.id.popup_ora);
         txt_posto = view.findViewById(R.id.popup_posto);
     }
+
 }

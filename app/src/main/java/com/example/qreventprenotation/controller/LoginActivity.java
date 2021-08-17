@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailLogin, passwordLogin;
     private TextView registerText;
     private Intent openMainActivity;
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,9 @@ public class LoginActivity extends AppCompatActivity {
         emailLogin = findViewById(R.id.lgn_email);
         passwordLogin = findViewById(R.id.lgn_password);
         registerText = findViewById(R.id.textView4);
+        checkBox = findViewById(R.id.checkBox);
 
+        automaticLogin();
 
         registerText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,11 +88,26 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    public void automaticLogin() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
+
+        if(sharedPreferences.getString("login", "").equals("true")) {
+            emailLogin.setText(sharedPreferences.getString("email", ""));
+            passwordLogin.setText(sharedPreferences.getString("password", ""));
+
+            checkBox.setChecked(true);
+        }else {
+            checkBox.setChecked(false);
+        }
+    }
+
     public void saveSharedPreferences(JSONObject response) {
         SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         try {
+            if(checkBox.isChecked()) ;
+                editor.putString("login", "true");
             editor.putString("email", emailLogin.getText().toString());
             editor.putString("password", passwordLogin.getText().toString());
             editor.putString("nome", response.getString("nome"));

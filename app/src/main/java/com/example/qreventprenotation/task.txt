@@ -1,6 +1,6 @@
 DA AGGIUNGERE:
 -"Ricordami" nel login
--Tabella event list
+-Popup click evento
 -Eliminare prenotazione
 
 DA MODIFICARE:

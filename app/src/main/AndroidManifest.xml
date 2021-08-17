@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.qreventprenotation">
 
-    <uses-feature android:name="android.hardware.camera.any"/>
+    <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,28 +13,35 @@
         android:icon="@mipmap/ic_launcher"
         android:label="QREventPrenotation"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.QREventPrenotation">
-        <activity android:name=".controller.ChangePasswordActivity"
-                  android:label="Cambia Password"/>
-        <activity android:name=".controller.ProfileViewActivity"
-                  android:label="Profilo"/>
-        <activity android:name=".controller.PrenotationListActivity"
-                  android:label="Bacheca Eventi"/>
-        <activity android:name=".controller.EventPrenotationActivity"
-                  android:label="Prenotazione Evento"/>
-        <activity android:name=".controller.MainActivity"
-                  android:label="Menu Principale"/>
-        <activity android:name=".controller.LoginActivity" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        android:theme="@style/Theme.QREventPrenotation"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".controller.AdapterActivity"></activity>
+        <activity
+            android:name=".controller.ChangePasswordActivity"
+            android:label="Cambia Password" />
+        <activity
+            android:name=".controller.ProfileViewActivity"
+            android:label="Profilo" />
+        <activity
+            android:name=".controller.PrenotationListActivity"
+            android:label="Bacheca Eventi" />
+        <activity
+            android:name=".controller.EventPrenotationActivity"
+            android:label="Prenotazione Evento" />
+        <activity
+            android:name=".controller.MainActivity"
+            android:label="Menu Principale" />
+        <activity android:name=".controller.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".controller.RegisterActivity"
-                  android:label="Registrazione"/>
+        <activity
+            android:name=".controller.RegisterActivity"
+            android:label="Registrazione" />
     </application>
 
 </manifest>

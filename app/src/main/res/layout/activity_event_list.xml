@@ -1,7 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_eventlist"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.PrenotationListActivity"/>
+    android:orientation="vertical"
+    tools:context=".controller.PrenotationListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:text="Nome Evento"
+            android:background="@drawable/border"
+            ></TextView>
+
+        <TextView
+            android:layout_width="111dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:text="Posto"
+            android:textAlignment="center"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_prenotazioni"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_noprenotazioni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Non esistono prenotazioni attive"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_gravity="center" />
+
+
+</LinearLayout>

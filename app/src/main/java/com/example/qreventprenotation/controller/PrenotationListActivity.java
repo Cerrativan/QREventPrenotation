@@ -1,8 +1,13 @@
 package com.example.qreventprenotation.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -11,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.qreventprenotation.R;
+import com.example.qreventprenotation.adapter.CustomAdapter;
 import com.example.qreventprenotation.json.MyJsonArrayRequest;
 import com.example.qreventprenotation.model.Prenotation;
 import com.google.gson.Gson;
@@ -23,11 +29,19 @@ import java.util.List;
 
 public class PrenotationListActivity extends AppCompatActivity {
 
+    private CustomAdapter adapter;
+    private RecyclerView recyclerView;
+    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
 
+        recyclerView = findViewById(R.id.recycler_prenotazioni);
+        textView = findViewById(R.id.text_noprenotazioni);
+
+        textView.setVisibility(View.GONE);
 
         getPrenotations();
 
@@ -46,16 +60,17 @@ public class PrenotationListActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("userid", id);
 
+
             MyJsonArrayRequest myJsonArrayRequest = new MyJsonArrayRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
                     try {
-                        Gson gson = new Gson();
-                        /*JSONObject jsonResponse = response.getJSONObject(1);
-                        if(jsonResponse.getString("prenotation").equals("1"))
-                            Toast.makeText(PrenotationListActivity.this, jsonResponse.get("userid").toString(), Toast.LENGTH_SHORT).show();*/
                         ArrayList<Prenotation> list = new Gson().fromJson(response.toString(), new TypeToken<List<Prenotation>>(){}.getType());
-                        Toast.makeText(PrenotationListActivity.this, list.get(1).getEventid().getEventid().toString(), Toast.LENGTH_SHORT).show();
+                        if(list.isEmpty()) {
+                            textView.setVisibility(View.VISIBLE);
+                        }else {
+                            initRecycler(list);
+                        }
                     }catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -71,5 +86,12 @@ public class PrenotationListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void initRecycler(ArrayList<Prenotation> list) {
+        adapter = new CustomAdapter(list, PrenotationListActivity.this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
     }
 }

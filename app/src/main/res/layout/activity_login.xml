@@ -42,10 +42,11 @@
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="110dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="#3F51B5"
         android:onClick="login"
         android:text="LOGIN"
-        app:iconTint="#3F51B5"
+        app:iconTint="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,21 +63,10 @@
         app:srcCompat="@drawable/a_guide_to_qr_codes_and_how_to_scan_qr_codes_2" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="210dp"
-        android:layout_height="23dp"
-        android:layout_marginBottom="206dp"
-        android:text="Hai dimenticato la password?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="70dp"
         android:background="#F6F7F8"
         android:text="Non sei ancora registrato?"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,9 +78,21 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="53dp"
+        android:layout_marginBottom="43dp"
         android:text="Registrati"
         android:textColor="#03A9F4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="170dp"
+        android:text="Rimani connesso"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

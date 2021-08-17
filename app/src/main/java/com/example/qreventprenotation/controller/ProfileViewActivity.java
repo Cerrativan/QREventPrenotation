@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -60,6 +61,7 @@ public class ProfileViewActivity extends AppCompatActivity {
         String cognome = sharedPreferences.getString("cognome", "");
 
         emailTextView.setText(email);
+        emailTextView.setPaintFlags(emailTextView.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         nomeTextView.setText(nome);
         cognomeTextView.setText(cognome);
         idTextView.setText(id);

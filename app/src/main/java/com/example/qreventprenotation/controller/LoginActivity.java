@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void automaticLogin() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserSharedPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(sharedPreferences.getString("login", "").equals("true")) {
             emailLogin.setText(sharedPreferences.getString("email", ""));
@@ -106,8 +107,11 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         try {
-            if(checkBox.isChecked()) ;
+            if(checkBox.isChecked()) {
                 editor.putString("login", "true");
+            }else {
+                editor.putString("login", "false");
+            }
             editor.putString("email", emailLogin.getText().toString());
             editor.putString("password", passwordLogin.getText().toString());
             editor.putString("nome", response.getString("nome"));

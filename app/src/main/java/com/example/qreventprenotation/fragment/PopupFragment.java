@@ -2,22 +2,35 @@ package com.example.qreventprenotation.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.qreventprenotation.R;
 import com.example.qreventprenotation.model.Prenotation;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class PopupFragment extends DialogFragment {
@@ -48,7 +61,21 @@ public class PopupFragment extends DialogFragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //deletePrenotation();
+                AlertDialog.Builder confirm = new AlertDialog.Builder(getActivity());
+                confirm.setMessage("Vuoi eliminare la prenotazione?");
+                confirm.setNegativeButton(R.string.NO, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                confirm.setPositiveButton(R.string.SI, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deletePrenotation();
+                    }
+                });
+                confirm.create();
+                confirm.show();
             }
         });
 
@@ -64,4 +91,36 @@ public class PopupFragment extends DialogFragment {
         txt_posto = view.findViewById(R.id.popup_posto);
     }
 
+    public void deletePrenotation() {
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url = "http://192.168.1.128:8080/api/deleteprenotation";
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("prenotationid", getArguments().getString("id"));
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        if(response.getString("result").equals("true")) {
+                            Toast.makeText(getContext(), "Prenotazione eliminata con successo", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getContext(), "Prenotazione non esistente", Toast.LENGTH_SHORT).show();
+                        }
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getContext(), "Prenotazione non esistente", Toast.LENGTH_SHORT).show();
+                }
+            });
+            queue.add(jsonObjectRequest);
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

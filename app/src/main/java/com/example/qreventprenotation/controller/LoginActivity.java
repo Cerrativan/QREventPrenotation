@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View view) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.128:8080/api/getusers";
+        String url = "http://192.168.1.16:8080/api/getusers";
 
         try {
             JSONObject jsonObject = new JSONObject();
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                             openMainActivity = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(openMainActivity);
                         }else {
-                            emailLogin.setError("Password errata");
+                            passwordLogin.setError("Password errata");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -80,6 +80,14 @@ public class RegisterActivity extends AppCompatActivity {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(emailText.getText().toString());
 
+        if(nomeText.getText().toString().length() < 1) {
+            nomeText.setError("Il nome non può essere vuoto");
+            bool = false;
+        }
+        if(cognomeText.getText().toString().length() < 1) {
+            cognomeText.setError("Il cognome non può essere vuoto");
+            bool = false;
+        }
         if(!(matcher.matches())) {
             emailText.setError("L'email inserita non è valida");
             bool = false;

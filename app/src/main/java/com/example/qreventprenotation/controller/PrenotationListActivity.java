@@ -54,7 +54,7 @@ public class PrenotationListActivity extends AppCompatActivity {
         String id = sharedPreferences.getString("id", "");
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.128:8080/api/getprenotations";
+        String url = "http://192.168.1.16:8080/api/getprenotations";
 
         try {
             JSONObject jsonObject = new JSONObject();

@@ -69,6 +69,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 args.putString("ora", list.get(position).getEventid().getHour());
                 args.putString("posto", list.get(position).getPrenotation().toString());
                 args.putString("nome", list.get(position).getEventid().getNome());
+                args.putString("luogo", list.get(position).getEventid().getLocation());
                 DialogFragment dialogFragment = new PopupFragment();
                 dialogFragment.setArguments(args);
                 dialogFragment.show(((FragmentActivity)activity).getSupportFragmentManager(), "Popup");

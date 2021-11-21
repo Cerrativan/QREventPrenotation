@@ -2,16 +2,18 @@ package com.example.qreventprenotation.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.qreventprenotation.R;
+import com.example.qreventprenotation.controller.PrenotationListActivity;
 import com.example.qreventprenotation.model.Prenotation;
 
 import org.json.JSONException;
@@ -36,7 +39,8 @@ import org.json.JSONObject;
 public class PopupFragment extends DialogFragment {
 
     Button button;
-    TextView txt_nome, txt_id, txt_data, txt_ora, txt_posto;
+    TextView txt_nome, txt_id, txt_data, txt_ora, txt_posto, txt_luogo;
+    private final String TAG = "fragmentTag";
 
     @NonNull
     @Override
@@ -51,6 +55,7 @@ public class PopupFragment extends DialogFragment {
         txt_data.setText(getArguments().getString("data"));
         txt_ora.setText(getArguments().getString("ora"));
         txt_posto.setText(getArguments().getString("posto"));
+        txt_luogo.setText(getArguments().getString("luogo"));
         builder.setView(view).
                 setNegativeButton(R.string.Chiudi, new DialogInterface.OnClickListener() {
                     @Override
@@ -72,6 +77,7 @@ public class PopupFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deletePrenotation();
+                        
                     }
                 });
                 confirm.create();
@@ -89,6 +95,7 @@ public class PopupFragment extends DialogFragment {
         txt_data = view.findViewById(R.id.popup_data);
         txt_ora = view.findViewById(R.id.popup_ora);
         txt_posto = view.findViewById(R.id.popup_posto);
+        txt_luogo = view.findViewById(R.id.popup_luogo);
     }
 
     public void deletePrenotation() {

@@ -59,6 +59,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:text="Luogo"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="Posto"
                 android:textAlignment="center"
                 android:textStyle="bold" />
@@ -86,6 +95,13 @@
                 android:background="@drawable/border"/>
             <TextView
                 android:id="@+id/popup_ora"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/border"/>
+            <TextView
+                android:id="@+id/popup_luogo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
